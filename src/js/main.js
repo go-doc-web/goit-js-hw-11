@@ -63,8 +63,10 @@ function fetchHits() {
         return;
       }
 
-      if (totalPerPage >= totalHits && totalHits === 0) {
+      if (totalPerPage >= totalHits || totalHits <= 40) {
         loadMoreBtn.hide();
+        totalPerPage = 0;
+
         Notify.info(
           "We're sorry, but you've reached the end of search results."
         );
