@@ -54,16 +54,16 @@ function fetchHits() {
     .fetchPhoto()
     .then(({ hits, totalHits }) => {
       console.log(hits);
+      totalPerPage += pixabayApiService.perPage;
       if (hits.length === 0) {
         loadMoreBtn.hide();
         Notify.failure(
           '"Sorry, there are no images matching your search query. Please try again."'
         );
+        return;
       }
 
-      totalPerPage += pixabayApiService.perPage;
-
-      if (totalPerPage >= totalHits) {
+      if (totalPerPage >= totalHits && totalHits === 0) {
         loadMoreBtn.hide();
         Notify.info(
           "We're sorry, but you've reached the end of search results."

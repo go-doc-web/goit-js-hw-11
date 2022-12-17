@@ -12,7 +12,12 @@ export default class PixabayApiService {
     return fetch(
       `${URL}?key=${KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${this.perPage}&page=${this.page}`
     )
-      .then(responce => responce.json())
+      .then(responce => {
+        if (!responce.ok) {
+          throw new Error(responce.status);
+        }
+        return responce.json();
+      })
       .then(({ hits, totalHits }) => {
         this.page += 1;
 
