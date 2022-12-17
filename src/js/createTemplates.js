@@ -9,11 +9,14 @@ export function createGallaryItemsMurkup(galleryItems) {
         comments,
         downloads,
         webformatURL,
+        userImageURL,
+        webformatWidth,
+        webformatHeight,
       }) =>
         ` <li class="gallary-item">
            <a href="${largeImageURL}" class="gallary-link">
          <div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <img src="${webformatURL}" alt="${tags}" loading="lazy" width="${webformatWidth}" heigth="180"/>
   <div class="info">
     <p class="info-item">
       likes
