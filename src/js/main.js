@@ -34,9 +34,8 @@ function onSubmitForm(e) {
   pixabayApiService.resetPage();
 
   loadMoreBtn.show();
-
+  clearRenderMurkup();
   fetchHits();
-  // if(pixabayApiService.)
 }
 
 function renderPhotoMurkup(murkUp) {
@@ -63,7 +62,7 @@ function fetchHits() {
         return;
       }
 
-      if (totalPerPage >= totalHits || totalHits <= 40) {
+      if (totalPerPage > totalHits) {
         loadMoreBtn.hide();
         totalPerPage = 0;
 
@@ -76,7 +75,7 @@ function fetchHits() {
       console.log('totalHits', totalHits);
 
       loadMoreBtn.enable();
-      clearRenderMurkup();
+
       const murkUp = createGallaryItemsMurkup(hits);
       renderPhotoMurkup(murkUp);
       lightbox.refresh();
@@ -87,3 +86,9 @@ function fetchHits() {
 }
 
 const lightbox = new SimpleLightbox('.gallary a', {});
+
+// const { height: cardHeight } = document
+//   .querySelector('.gallery')
+//   .firstElementChild.getBoundingClientRect();
+
+// console.log(height);
